@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS salas;
 DROP TABLE IF EXISTS peliculas;
 
 CREATE TABLE peliculas(
-	id INT AUTO_INCREMENT,
+	id INT  AUTO_INCREMENT ,
 	nombre VARCHAR(100),
     calificacion INT,
 	PRIMARY KEY(id)
@@ -13,7 +13,7 @@ CREATE TABLE salas(
 	nombre VARCHAR(100),
 	pelicula INT,
 	PRIMARY KEY(id),
-	CONSTRAINT pelicula_fk FOREIGN KEY (pelicula) REFERENCES peliculas(id)
+	CONSTRAINT pelicula_fk FOREIGN KEY (pelicula) REFERENCES peliculas(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
