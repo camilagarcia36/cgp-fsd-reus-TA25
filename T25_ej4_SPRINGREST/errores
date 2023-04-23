@@ -1,10 +1,1 @@
-El delete no me funciona, sale el siguiente error que no he conseguido solventar:
-
-023-04-24 00:01:09.215[0;39m [31mERROR[0;39m [35m31608[0;39m [2m---[0;39m [2m[nio-8181-exec-1][0;39m [36mo.h.engine.jdbc.spi.SqlExceptionHelper  [0;39m [2m:[0;39m La columna "ID" no permite valores nulos (NULL)
-NULL not allowed for column "ID"; SQL statement:
-update salas set id=null where id=? [23502-214]
-[2m2023-04-24 00:01:09.216[0;39m [32m INFO[0;39m [35m31608[0;39m [2m---[0;39m [2m[nio-8181-exec-1][0;39m [36mo.h.e.j.b.internal.AbstractBatchImpl    [0;39m [2m:[0;39m HHH000010: On release of batch it still contained JDBC statements
-[2m2023-04-24 00:01:09.230[0;39m [31mERROR[0;39m [35m31608[0;39m [2m---[0;39m [2m[nio-8181-exec-1][0;39m [36mo.a.c.c.C.[.[.[/].[dispatcherServlet]   [0;39m [2m:[0;39m Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
-
-org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: La columna "ID" no permite valores nulos (NULL)
-NULL not allowed for column "ID"; SQL statement:
+Primero hay que eliminar la sala para que al eliminar la pelicula no te de error de nulll. 
