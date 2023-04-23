@@ -7,73 +7,64 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "almacenes")
-public class Almacenes {
-
+public class Almacenes  {
+	// Atributos de entidad departamento
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // busca ultimo valor e incrementa desde id final de db
-	private int id;
-	@Column(name = "nombre") // no hace falta si se llama igual
-	private String nombre;
-	@Column(name = "capacidad") // no hace falta si se llama igual
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int codigo;
+	@Column(name = "lugar")
+	private String lugar;
+	@Column(name = "capacidad")
 	private int capacidad;
 
 	@OneToMany
-	@JoinColumn(name = "id")
-	private List<Cajas> cajas;
+	@JoinColumn(name = "numreferencia")
+	private List<Cajas> caja;
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Caja")
+	public List<Cajas> getCaja() {
+		return caja;
+	}
+
+	// CONSTRUCTORES
 	public Almacenes() {
 
 	}
 
-	public Almacenes(String nombre, int capacidad) {
-
-		this.nombre = nombre;
+	public Almacenes(String lugar, int capacidad) {
+		this.lugar = lugar;
 		this.capacidad = capacidad;
 	}
 
-	public int getid() {
-		return id;
+	// GETTERS Y SETTERS
+	public int getCodigo() {
+		return codigo;
 	}
 
-	public void setid(int id) {
-		this.id = id;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getLugar() {
+		return lugar;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	public int getCapacidad() {
 		return capacidad;
 	}
 
-	/**
-	 * @return the cajas
-	 */
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Cajas")
-	public List<Cajas> getCajas() {
-		return cajas;
-	}
-
-	/**
-	 * @param cajas the cajas to set
-	 */
-	public void setCajas(List<Cajas> cajas) {
-		this.cajas = cajas;
-	}
-
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
 
+	// TO STRING
 	@Override
 	public String toString() {
-		return "Almacenes [id=" + id + ", nombre=" + nombre + ", capacidad=" + capacidad + "]";
+		return "Almacen [codigo=" + codigo + ", lugar=" + lugar + ", capacidad=" + capacidad + ", caja=" + caja + "]";
 	}
-
 }

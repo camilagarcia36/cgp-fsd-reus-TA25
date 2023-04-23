@@ -1,6 +1,7 @@
 package com.ejercicio.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,55 +14,43 @@ import com.ejercicio.service.CajasServiceIMPL;
 public class CajasController {
 
 	@Autowired
-	CajasServiceIMPL cajasServiceImpl;
+	CajasServiceIMPL cajasServiceImpl;;
 
-	@GetMapping("/Cajas")
-	public List<Cajas> listarCajass() {
-		return cajasServiceImpl.listarCajass();
+	@GetMapping("/cajas")
+	public List<Cajas> listarCajas() {
+		return cajasServiceImpl.listarCajas();
 	}
 
-
-
-	@PostMapping("/Cajas")
-	public Cajas salvarCajas(@RequestBody Cajas Cajas) {
-
-		return cajasServiceImpl.guardarCajas(Cajas);
+	@PostMapping("/cajas")
+	public Cajas guardarCaja(@RequestBody Cajas caja) {
+		return cajasServiceImpl.guardarCaja(caja);
 	}
 
-	@GetMapping("/Cajas/{id}")
-	public Cajas CajasXID(@PathVariable(name = "id") int id) {
-
-		Cajas Cajas_xid = new Cajas();
-
-		Cajas_xid = cajasServiceImpl.CajasXID(id);
-
-		System.out.println("Cajas XID: " + Cajas_xid);
-
-		return Cajas_xid;
+	@GetMapping("/cajas/{numreferencia}")
+	public Cajas cajaById(@PathVariable(name = "numreferencia") String numreferencia) {
+		Cajas caja = new Cajas();
+		caja = cajasServiceImpl.cajaById(numreferencia);
+		System.out.println("Fabricante By ID: " + caja);
+		return caja;
 	}
 
-	@PutMapping("/Cajas/{id}")
-	public Cajas actualizarCajas(@PathVariable(name = "id") int id, @RequestBody Cajas Cajas) {
+	@PutMapping("/cajas/{numreferencia}")
+	public Cajas actualizarCaja(@PathVariable(name = "numreferencia") String numreferencia, @RequestBody Cajas caja) {
 
-		Cajas Cajas_seleccionado = new Cajas();
-		Cajas Cajas_actualizado = new Cajas();
+		Cajas caja_seleccionado = new Cajas();
+		Cajas caja_actualizado = new Cajas();
+		caja_seleccionado = cajasServiceImpl.cajaById(numreferencia);
+		caja_seleccionado.setContenido(caja.getContenido());
+		caja_seleccionado.setValor(caja.getValor());
+		caja_seleccionado.setAlmacen(caja.getAlmacen());
 
-		Cajas_seleccionado = cajasServiceImpl.CajasXID(id);
-
-		Cajas_seleccionado.setid(Cajas.getid());
-		Cajas_seleccionado.setContenido(Cajas.getContenido());
-		Cajas_seleccionado.setValor(Cajas.getValor());
-
-		Cajas_actualizado = cajasServiceImpl.actualizarCajas(Cajas_seleccionado);
-
-		System.out.println("El Cajas actualizado es: " + Cajas_actualizado);
-
-		return Cajas_actualizado;
+		caja_actualizado = cajasServiceImpl.actualizarCaja(caja_seleccionado);
+		return caja_actualizado;
 	}
 
-	@DeleteMapping("/Cajas/{id}")
-	public void eliminarCajas(@PathVariable(name = "id") int id) {
-		cajasServiceImpl.eliminarCajas(id);
+	@DeleteMapping("/cajas/{numreferencia}")
+	public void eliminarCaja(@PathVariable(name = "numreferencia") String numreferencia) {
+		cajasServiceImpl.eliminarCaja(numreferencia);
 	}
 
 }

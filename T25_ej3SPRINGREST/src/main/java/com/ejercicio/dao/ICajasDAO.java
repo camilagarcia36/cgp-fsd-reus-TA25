@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ejercicio.dto.Cajas;
 
-public interface ICajasDAO extends JpaRepository<Cajas, Integer>{
+public interface ICajasDAO extends JpaRepository<Cajas, String>{
 	
 
 	

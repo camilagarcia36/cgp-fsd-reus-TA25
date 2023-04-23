@@ -2,40 +2,42 @@ package com.ejercicio.dto;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "cajas")
 public class Cajas {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // busca ultimo valor e incrementa desde id final de db
-	private int id;
-	@Column(name = "contenido") // no hace falta si se llama igual
+	@Column(name = "numreferencia")
+	private String numreferencia;
+	@Column(name = "contenido")
 	private String contenido;
-	@Column(name = "valor") // no hace falta si se llama igual
+	@Column(name = "valor")
 	private int valor;
 
 	@ManyToOne
-	@JoinColumn(name = "almacen") // no hace falta si se llama igual
+	@JoinColumn(name = "almacen")
 	private Almacenes almacen;
 
+	// CONTRUCTORES
 	public Cajas() {
 
 	}
 
-	public Cajas(String contenido, int valor, Almacenes almacen) {
+	public Cajas(String numreferencia, String contenido, int valor, Almacenes almacen) {
+		this.numreferencia = numreferencia;
 		this.contenido = contenido;
 		this.valor = valor;
 		this.almacen = almacen;
 	}
 
-	public int getid() {
-		return id;
+	// GETTERS Y SETTERS
+	public String getNumreferencia() {
+		return numreferencia;
 	}
 
-	public void setid(int id) {
-		this.id = id;
+	public void setNumreferencia(String numreferencia) {
+		this.numreferencia = numreferencia;
 	}
 
 	public String getContenido() {
@@ -54,14 +56,18 @@ public class Cajas {
 		this.valor = valor;
 	}
 
+	public Almacenes getAlmacen() {
+		return almacen;
+	}
 
 	public void setAlmacen(Almacenes almacen) {
 		this.almacen = almacen;
 	}
 
+	// TO STRING
 	@Override
 	public String toString() {
-		return "Cajas [id=" + id + ", contenido=" + contenido + ", valor=" + valor + "]";
+		return "Caja [numreferencia=" + numreferencia + ", contenido=" + contenido + ", valor=" + valor + ", almacen="
+				+ almacen + "]";
 	}
-
 }

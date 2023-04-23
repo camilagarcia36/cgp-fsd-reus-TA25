@@ -11,36 +11,34 @@ import com.ejercicio.dto.Almacenes;
 import com.ejercicio.dto.Cajas;
 
 @Service
-public class CajasServiceIMPL implements ICajasService{
-
+public class CajasServiceIMPL implements ICajasService {
 	@Autowired
 	ICajasDAO iCajasDAO;
+
 	@Override
-	public List<Cajas> listarCajass() {
+	public List<Cajas> listarCajas() {
 		return iCajasDAO.findAll();
 	}
 
 	@Override
-	public Cajas guardarCajas(Cajas cajas) {
-		return iCajasDAO.save(cajas);
+	public Cajas guardarCaja(Cajas caja) {
+		return iCajasDAO.save(caja);
 	}
 
 	@Override
-	public Cajas CajasXID(int id) {
-		return iCajasDAO.findById(id).get();
-	}
-
-
-	@Override
-	public Cajas actualizarCajas(Cajas cajas) {
-		return iCajasDAO.save(cajas);
+	public Cajas cajaById(String numreferencia) {
+		return iCajasDAO.findById(numreferencia).get();
 	}
 
 	@Override
-	public void eliminarCajas(int id) {
-		iCajasDAO.deleteById(id);
-		
+	public Cajas actualizarCaja(Cajas caja) {
+		return iCajasDAO.save(caja);
 	}
 
+	@Override
+	public void eliminarCaja(String numreferencia) {
+		iCajasDAO.deleteById(numreferencia);
+
+	}
 
 }

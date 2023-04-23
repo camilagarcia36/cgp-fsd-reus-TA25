@@ -6,13 +6,14 @@ import com.ejercicio.dto.Almacenes;
 
 public interface IAlmacenesService {
 
-	public List<Almacenes> listarAlmaceness();
+	// Metodos del CRUD
+		public List<Almacenes> listarAlmacen(); // Listar All
 
-	public Almacenes guardarAlmacenes(Almacenes Almacenes);
+		public Almacenes guardarAlmacen(Almacenes almacen); // Guarda un almacen CREATE
 
-	public Almacenes AlmacenesXID(int id);
+		public Almacenes almacenById(int codigo); // Leer datos de un almacen READ
 
-	public Almacenes actualizarAlmacenes(Almacenes Almacenes);
+		public Almacenes actualizarAlmacen(Almacenes almacen); // Actualiza datos del almacen UPDATE
 
-	public void eliminarAlmacenes(int id);
+		public void eliminarAlmacen(int codigo);// Elimina el almacen DELETE
 }

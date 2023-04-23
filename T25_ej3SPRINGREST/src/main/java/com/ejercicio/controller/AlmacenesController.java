@@ -3,6 +3,7 @@ package com.ejercicio.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,52 +14,44 @@ import com.ejercicio.service.AlmacenesServiceIMPL;
 @RequestMapping("/api")
 public class AlmacenesController {
 
+
 	@Autowired
 	AlmacenesServiceIMPL almacenesServiceImpl;
 
-	@GetMapping("/Almacenes")
-	public List<Almacenes> listarAlmacenes() {
-		return almacenesServiceImpl.listarAlmaceness();
+	@GetMapping("/almacenes")
+	public List<Almacenes> listarAlmacen() {
+		return almacenesServiceImpl.listarAlmacen();
 	}
 
-	@PostMapping("/Almacenes")
-	public Almacenes salvarAlmacenes(@RequestBody Almacenes Almacenes) {
-		return almacenesServiceImpl.guardarAlmacenes(Almacenes);
+	@PostMapping("/almacenes")
+	public Almacenes salvarAlmacen(@RequestBody Almacenes almacen) {
+		return almacenesServiceImpl.guardarAlmacen(almacen);
 	}
 
-	@GetMapping("/Almacenes/{id}")
-	public Almacenes AlmacenesXID(@PathVariable(name = "id") int id) {
-
-		Almacenes Almacenes_xid = new Almacenes();
-
-		Almacenes_xid = almacenesServiceImpl.AlmacenesXID(id);
-
-		System.out.println("Almacenes XID: " + Almacenes_xid);
-
-		return Almacenes_xid;
+	@GetMapping("/almacenes/{codigo}")
+	public Almacenes almacenById(@PathVariable(name = "codigo") int codigo) {
+		Almacenes almacen = new Almacenes();
+		almacen = almacenesServiceImpl.almacenById(codigo);
+		System.out.println("Fabricante By ID: " + almacen);
+		return almacen;
 	}
 
-	@PutMapping("/Almacenes/{id}")
-	public Almacenes actualizarAlmacenes(@PathVariable(name = "id") int id, @RequestBody Almacenes Almacenes) {
+	@PutMapping("/almacenes/{codigo}")
+	public Almacenes actualizarAlmacen(@PathVariable(name = "codigo") int codigo, @RequestBody Almacenes almacen) {
 
-		Almacenes Almacenes_seleccionado = new Almacenes();
-		Almacenes Almacenes_actualizado = new Almacenes();
+		Almacenes almacen_seleccionado = new Almacenes();
+		Almacenes almacen_actualizado = new Almacenes();
+		almacen_seleccionado = almacenesServiceImpl.almacenById(codigo);
+		almacen_seleccionado.setLugar(almacen.getLugar());
+		almacen_seleccionado.setCapacidad(almacen.getCapacidad());
 
-		Almacenes_seleccionado = almacenesServiceImpl.AlmacenesXID(id);
-
-		Almacenes_seleccionado.setid(Almacenes.getid());
-		Almacenes_seleccionado.setNombre(Almacenes.getNombre());
-		Almacenes_seleccionado.setCapacidad(Almacenes.getCapacidad());
-
-		Almacenes_actualizado = almacenesServiceImpl.actualizarAlmacenes(Almacenes_seleccionado);
-
-		System.out.println("El Almacenes actualizado es: " + Almacenes_actualizado);
-
-		return Almacenes_actualizado;
+		almacen_actualizado = almacenesServiceImpl.actualizarAlmacen(almacen_seleccionado);
+		System.out.println("El cliente actualizado es: " + almacen_actualizado);
+		return almacen_actualizado;
 	}
 
-	@DeleteMapping("/Almacenes/{id}")
-	public void eliminarAlmacenes(@PathVariable(name = "id") int id) {
-		almacenesServiceImpl.eliminarAlmacenes(id);
+	@DeleteMapping("/almacenes/{codigo}")
+	public void eliminarAlmacen(@PathVariable(name = "codigo") int codigo) {
+		almacenesServiceImpl.eliminarAlmacen(codigo);
 	}
 }

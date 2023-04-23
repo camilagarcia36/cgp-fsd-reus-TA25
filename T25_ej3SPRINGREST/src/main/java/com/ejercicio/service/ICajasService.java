@@ -7,15 +7,13 @@ import com.ejercicio.dto.Cajas;
 
 public interface ICajasService {
 
-	public List<Cajas> listarCajass();
+	public List<Cajas> listarCajas(); 
 
-	public Cajas guardarCajas(Cajas cajas);
+	public Cajas guardarCaja(Cajas caja);
 
-	public Cajas CajasXID(int id);
+	public Cajas cajaById(String numreferencia);
 
+	public Cajas actualizarCaja(Cajas caja); 
 
-
-	public Cajas actualizarCajas(Cajas cajas);
-
-	public void eliminarCajas(int id);
+	public void eliminarCaja(String numreferencia);
 }

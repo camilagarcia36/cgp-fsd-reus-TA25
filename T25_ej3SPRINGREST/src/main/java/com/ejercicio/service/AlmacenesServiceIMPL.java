@@ -11,30 +11,31 @@ import com.ejercicio.dto.Almacenes;
 public class AlmacenesServiceIMPL implements IAlmacenesService{
 
 	@Autowired
-	IAlmacenesDAO iAlmacenesDAO;
+	IAlmacenesDAO iAlmacenDAO;
+
 	@Override
-	public List<Almacenes> listarAlmaceness() {
-		return iAlmacenesDAO.findAll();
+	public List<Almacenes> listarAlmacen() {
+		return iAlmacenDAO.findAll();
 	}
 
 	@Override
-	public Almacenes guardarAlmacenes(Almacenes almacenes) {
-		return iAlmacenesDAO.save(almacenes);
+	public Almacenes guardarAlmacen(Almacenes almacen) {
+		return iAlmacenDAO.save(almacen);
 	}
 
 	@Override
-	public Almacenes AlmacenesXID(int id) {
-		return iAlmacenesDAO.findById(id).get();
+	public Almacenes almacenById(int codigo) {
+		return iAlmacenDAO.findById(codigo).get();
 	}
 
 	@Override
-	public Almacenes actualizarAlmacenes(Almacenes almacenes) {
-		return iAlmacenesDAO.save(almacenes);
+	public Almacenes actualizarAlmacen(Almacenes almacen) {
+		return iAlmacenDAO.save(almacen);
 	}
 
 	@Override
-	public void eliminarAlmacenes(int id) {
-		iAlmacenesDAO.deleteById(id);
-	}
+	public void eliminarAlmacen(int codigo) {
+		iAlmacenDAO.deleteById(codigo);
 
+	}
 }
