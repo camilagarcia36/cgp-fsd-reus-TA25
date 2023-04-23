@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /**
  * 
- * @author JOAN
+ * @author CAMILA
  *
  */
 @Entity
